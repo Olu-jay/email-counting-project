@@ -1,7 +1,11 @@
+"""This file automatically sorts downloads into respective folders"""
+
+
 import os
 import re
 from pathlib import Path
 import shutil
+
 
 # Define the working directory and navigate to it
 base_dir = Path("C:/Users/ezeki/Videos/Movies")
@@ -23,8 +27,8 @@ for file in base_dir.iterdir():
         print(f"Moving: {file.name}")
         try:
             shutil.move(str(file), str(folder_path / file.name))
-        except Exception as e:
-            print(f"Error moving {file.name}: {e}")
+        except FileNotFoundError:
+            print(f"Error moving {file.name}")
 
     # Rename files that start with "tfpdl"
     elif file.name.casefold().startswith("tfpdl"):
@@ -47,7 +51,7 @@ for file in base_dir.iterdir():
                 print(f"Renaming: {file.name} -> {new_name}")
                 try:
                     file.rename(new_path)
-                except Exception as e:
-                    print(f"Error renaming {file.name}: {e}")
+                except FileNotFoundError:
+                    print(f"Error renaming {file.name}")
 
 print("Processing complete.")
