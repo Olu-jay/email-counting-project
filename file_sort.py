@@ -1,3 +1,6 @@
+"""This program sorts downloaded file automatically."""
+
+
 import os
 import re
 from pathlib import Path
@@ -22,7 +25,7 @@ for file in os.listdir():
     if file.startswith("The Lincoln Lawyer"):
         print(f"Moving: {file}")
         shutil.move(str(file_path), str(folder_path / file))
-    
+
     # Process files that start with "tfpdl"
     if file.startswith("tfpdl"):
         name, ext = os.path.splitext(file)
